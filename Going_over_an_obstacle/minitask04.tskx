@@ -1,0 +1,79 @@
+﻿version 4.00
+cm_version 1.0
+platform CM-530
+o // param_text:Created : 11 / 17 / 2020
+- 
+o main
+o begin
+o label laddr_src:Sleep
+o call faddr_dest:Stop
+o load param_dest:motion:0:50 param_src:dec_num:1
+o call faddr_dest:CompleteMotion
+o load param_dest:cm:19 param_src:dec_num:0
+o label laddr_src:Work
+o if param_src:cm:19 lop:>= param_src:dec_num:1 rop:then
+o jump laddr_dest:ForwardWalk
+o jump laddr_dest:Work
+o call faddr_dest:CompleteMotion
+o label laddr_src:ForwardWalk
+- 
+o load param_dest:motion:-:50 param_src:dec_num:2
+o call faddr_dest:CompleteMotion
+- 
+o while param_src:aux:1:63 lop:>= param_src:dec_num:15 rop:then
+o begin
+- 
+o call faddr_dest:CompleteMotion
+o load param_dest:motion:0:50 param_src:dec_num:65
+o end
+o end
+o function faddr_src:CompleteMotion
+o begin
+o wait param_src:motion:-:51 lop:== param_src:bool_num:1 rop:then
+o end
+o function faddr_src:Stop
+o begin
+o load param_dest:motion:0:50 param_src:dec_num:0
+o call faddr_dest:CompleteMotion
+o end
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
+- 
